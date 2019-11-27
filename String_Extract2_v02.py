@@ -134,36 +134,36 @@ for file in dirs:
     preco_arq = 0.00
     if indice >= 0.00 and indice <= 29.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (VERY CONFUSING)")
-        mult_indice = 0.014
+        mult_indice = 1.6
     elif indice >= 30.00 and indice <= 49.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (DIFFICULT)")
-        mult_indice = 0.012
+        mult_indice = 1.4
     elif indice >= 50.00 and indice <= 59.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (FAIRLY DIFFICULT)")
-        mult_indice = 0.01
+        mult_indice = 1.2
     elif indice >= 60.00 and indice <= 69.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (STANDARD)")
-        mult_indice = 0.008
+        mult_indice = 1.0
     elif indice >= 70.00 and indice <= 79.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (FAIRLY EASY)")
-        mult_indice = 0.006
+        mult_indice = 0.8
     elif indice >= 80.00 and indice <= 89.99:
         print("ÍNDICE FLESCH: " + str(indice) + "  (EASY)")
-        mult_indice = 0.004
+        mult_indice = 0.6
     else:
         print("ÍNDICE FLESCH: " + str(indice) + "  (VERY EASY)")
-        mult_indice = 0.002
-
-    #POPULANDO O DATAFRAME COM AS INFORMAÇÕES DO DICIONÁRIO
-    df = df.append(data_dict, ignore_index=True)
+        mult_indice = 0.4
 
     #----CONTAGEM TIPO DE PALAVRAS (VERIFICAR ARQUIVO LEGENDA.TXT)----
     print(Counter(tag for word,tag in classificado)) 
 
     #----DEFININDO PREÇOS DOS ARQUIVOS----
-    preco_arq = ((nro_caracteres*0.005) + (nro_pags*5) + (nro_palavras*0.002) + (numbers*0.00005) + (plvr_outra_ling*0.002) + (plvrs_unicas*0.0003) + (substantivos*0.007) + (verbos*0.002)) * mult_indice 
+    preco_arq = round((((len(new_string))*0.005) + ((pdf.getNumPages())*5) + ((len(tokenized_word))*0.002) + (countcd*0.00005) + (countfw*0.002) + ((len(fdist.most_common()))*0.0003) + (countnn*0.007) + (countvb*0.002)) * mult_indice,2)
     data_dict.update({'Preco_arq':'' + str(preco_arq)})
     print("PREÇO CALCULADO: R$" + str(preco_arq))
+
+    #POPULANDO O DATAFRAME COM AS INFORMAÇÕES DO DICIONÁRIO
+    df = df.append(data_dict, ignore_index=True)
 
     print('\n') 
 
