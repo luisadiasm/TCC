@@ -9,6 +9,8 @@ import sklearn
 from sklearn import preprocessing as pre
 from sklearn.neural_network import MLPRegressor
 
+#APRESENTA O GRÁFICO COM COMPARAÇÃO DE ERROS DE CADA ALGORITMO
+
 scaler = pre.StandardScaler()
 df = pd.read_csv('dataframe_v02.csv',sep=';') 
 
