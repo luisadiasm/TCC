@@ -9,6 +9,8 @@ import sklearn
 from sklearn import preprocessing as pre
 from sklearn.neural_network import MLPRegressor
 
+#GERA OS GRÁFICOS LINEARES DAS FEATURESXPREÇO E COMPARAÇÃO DO VALOR REAL E PREVISTO
+
 scaler = pre.StandardScaler()
 df = pd.read_csv('dataframe_v02.csv',sep=';') 
 
