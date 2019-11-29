@@ -9,8 +9,6 @@ import sklearn
 from sklearn import preprocessing as pre
 from sklearn.neural_network import MLPRegressor
 
-#APRESENTA O GRÁFICO COM COMPARAÇÃO DE ERROS DE CADA ALGORITMO
-
 scaler = pre.StandardScaler()
 df = pd.read_csv('dataframe_v02.csv',sep=';') 
 
@@ -53,7 +51,7 @@ for i in range(25):
     dicty.update({'Absolute Error SLR':Mean_abs_error_slr,'Squared Error SLR':Mean_sqr_error_slr,'Root Mean Squared Error SLR':Mean_root_sqr_error_slr})
 
 
-    regressor_MLP = MLPRegressor(hidden_layer_sizes=(100,100,100,100), max_iter=10000)
+    regressor_MLP = MLPRegressor(hidden_layer_sizes=(64,64,64,64), max_iter=10000)
     regressor_MLP.fit(x_train, y_train)
     y_pred_mlp = regressor_MLP.predict(x_test)
 
@@ -70,10 +68,7 @@ for i in range(25):
 
     output = output.append(dicty, ignore_index=True)
 
-
-
 output.to_csv('output.csv',sep=';',decimal=',')
-
 
 #output = output.sort_values(['Absolute Error SLR'], ascending=[False])
 df3 = output.head(20)

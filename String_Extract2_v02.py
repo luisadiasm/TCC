@@ -18,7 +18,7 @@ def remover_acentos(txt):
     return normalize('NFKD', txt.strip()).encode('ASCII', 'ignore').decode('ASCII')
 remove_digits = str.maketrans('', '', digits)
 
-path  = "./diretorioING/"
+path  = "./diretorioING2/"
 dirs = os.listdir(path)
 df = pd.DataFrame()
 
@@ -26,7 +26,7 @@ for file in dirs:
 
     #--- DICIONÁRIO COM AS FEATURES ---
     data_dict = {'NomeArquivo':'0','verbos':'0', 'substantivos':'0', 'nro_pags':'0', 'nro_caracteres':'0', 'med_caracs_pags':'0', \
-    'nro_palavras':'0', 'plvrs_unicas':'0', 'plvr_outra_ling':'0', 'numbers':'0', 'Preco_arq':'0'}
+    'nro_palavras':'0', 'plvrs_unicas':'0', 'plvr_outra_ling':'0', 'numbers':'0', 'Preco_arq':'0', 'Indice_flesch':'0'}
 
 
     raw = parser.from_file(path + file)
@@ -128,6 +128,7 @@ for file in dirs:
 
     #----CALCULANDO INDICE FLESCH----
     indice = textstat.flesch_reading_ease(raw['content'])   
+    data_dict.update({'Indice_flesch':'' + str(indice)})
     mult_indice = 0.00
 
     print("---- ANÁLISE FLESCH ----")

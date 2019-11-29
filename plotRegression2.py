@@ -4,12 +4,10 @@ import matplotlib.pyplot as plt
 import seaborn as seabornInstance 
 from sklearn.model_selection import train_test_split 
 from sklearn.linear_model import LinearRegression
+from sklearn.neural_network import MLPRegressor
 from sklearn import metrics
 import sklearn
 from sklearn import preprocessing as pre
-from sklearn.neural_network import MLPRegressor
-
-#GERA OS GRÁFICOS LINEARES DAS FEATURESXPREÇO E COMPARAÇÃO DO VALOR REAL E PREVISTO
 
 scaler = pre.StandardScaler()
 df = pd.read_csv('dataframe_v02.csv',sep=';') 
@@ -99,7 +97,7 @@ Mean_root_sqr_error_slr = round(metrics.mean_squared_error(y_test, y_pred_slr),3
 dicty.update({'Absolute Error SLR':Mean_abs_error_slr,'Squared Error SLR':Mean_sqr_error_slr,'Root Mean Squared Error SLR':Mean_root_sqr_error_slr})
 
 
-regressor_MLP = MLPRegressor(hidden_layer_sizes=(100,100,100,100), max_iter=10000)
+regressor_MLP = MLPRegressor(hidden_layer_sizes=(64,64,64,64), max_iter=10000)
 regressor_MLP.fit(x_train, y_train)
 y_pred_mlp = regressor_MLP.predict(x_test)
 
