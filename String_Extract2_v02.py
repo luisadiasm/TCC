@@ -18,7 +18,7 @@ def remover_acentos(txt):
     return normalize('NFKD', txt.strip()).encode('ASCII', 'ignore').decode('ASCII')
 remove_digits = str.maketrans('', '', digits)
 
-path  = "./diretorioING2/"
+path  = "./diretorioING/"
 dirs = os.listdir(path)
 df = pd.DataFrame()
 
